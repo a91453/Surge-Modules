@@ -8,4 +8,4 @@ hostname = %APPEND% ios-api-2.duolingo.com, ios-api-cf.duolingo.com
 [Script]
 # 使用正規表達式精準匹配獲取 User Profile 的網址
 # pattern 解析：攔截包含 /users/加上一串數字 的網址，且後面沒有其他如 /quests 等單字
-DuolingoVIP = type=http-response,pattern=^https:\/\/ios-api(-2|-cf)?\.duolingo\.com\/\d{4}-\d{2}-\d{2}\/users\/\d+(?!\/),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/你的帳號/你的儲存庫/main/duolingo_vip.js
+DuolingoVIP = type=http-response,pattern=^https:\/\/ios-api(-2|-cf)?\.duolingo\.com\/\d{4}-\d{2}-\d{2}\/users\/\d+(?!\/),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/a91453/Surge-Modules/refs/heads/main/dua.js
