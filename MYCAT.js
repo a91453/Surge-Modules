@@ -19,7 +19,8 @@ function re(regStr, replaceStr) {
 // 3. 執行你的替換規則
 // 這裡將 "expires_date":"年份4碼 和 "period_type":"任意字元" 
 // 替換成 "expires_date":"2099 和 "period_type":"active"
-re('"expires_date":"\\w{4}@"period_type":"\\w+"', '"expires_date":"2099@"period_type":"active"');
+// \s* 代表允許 0 個或多個空格， [^"]+ 代表匹配所有不是雙引號的字元
+re('"expires_date"\\s*:\\s*"\\w{4}@"period_type"\\s*:\\s*"[^"]+"', '"expires_date":"2099@"period_type":"active"');
 
 // 如果你以後想增加其他 App 的規則，可以直接在下面繼續加：
 // re('"is_pro":false', '"is_pro":true');
