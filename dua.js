@@ -6,8 +6,8 @@ try {
     // 嘗試解析最外層的 JSON
     obj = JSON.parse(rawBody);
 } catch (e) {
-    // 如果回傳的不是 JSON（例如純文字或錯誤畫面），直接放行
-    $done({});
+    // 加入 return 直接結束執行，並將原本的原始數據安全放行
+    return $done({ body: rawBody }); 
 }
 
 // ==========================================
