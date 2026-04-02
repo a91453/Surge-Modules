@@ -1,6 +1,12 @@
 // 1. 獲取 Apple 伺服器回傳的原始資料並轉為 JSON 物件
 let body = $response.body;
-let obj = JSON.parse(body);
+let obj;
+try {
+    obj = JSON.parse(body);
+} catch (e) {
+    // 解析失敗時，原樣回傳並終止腳本
+    return $done({ body });
+}
 
 // 2. 設定客製化的「假到期時間」
 const fakeDate = "2099-12-31 23:59:59 Etc/GMT";
