@@ -1,5 +1,5 @@
-#!name=YouTube Enhance (Lite + SABR Opt-Out)
-#!desc=YouTube 廣告攔截：(1) URL-based 規則擋追蹤、舊版廣告片源；(2) http-request 腳本降版 iOS client 強制 opt-out SABR，讓伺服器吐舊版串流協定（有 &oad 可擋）。實驗性質，若播放異常請移除模組。
+#!name=YouTube Enhance (Lite)
+#!desc=YouTube 廣告攔截。整合 Choler / jimmyorz / Gx3dong 等社群維護模組的 URL-based 技巧。透過 ctier=L 廣告 tier 標記擋廣告片源（已驗證實際 log 樣本），不依賴 protobuf 與 SABR opt-out 腳本。
 #!system=ios
 
 [Rule]
@@ -16,9 +16,10 @@ DOMAIN-SUFFIX,tubemogul.com,REJECT
 DOMAIN,premiumyva.appspot.com,REJECT
 
 # 廣告片源（googlevideo.com 上的 ad video）
-# &oad 是廣告來源標記；&ctier=L/B/... 是廣告 tier，但 ctier=A 是合法主內容，故用負向先行排除
-URL-REGEX,^https?:\/\/[\w-]+\.googlevideo\.com\/.+&oad,REJECT-TINYGIF
-URL-REGEX,^https?:\/\/[\w-]+\.googlevideo\.com\/.+&ctier=(?!A)[A-Z],REJECT-TINYGIF
+# &oad 舊版標記；ctier=A 是合法主內容，ctier=[B-Z] 全部視為廣告 tier
+# 不用 (?!A) 負向先行（Surge URL-REGEX 在某些版本是 RE2 引擎，lookahead 不支援）
+URL-REGEX,^https?:\/\/[\w-]+\.googlevideo\.com\/.+[?&]oad,REJECT-TINYGIF
+URL-REGEX,^https?:\/\/[\w-]+\.googlevideo\.com\/.+[?&]ctier=[B-Z],REJECT-TINYGIF
 
 # 廣告追蹤 / 統計
 URL-REGEX,^https?:\/\/[\w-]+\.googlevideo\.com\/ptracking\?pltype=adhost,REJECT
@@ -36,11 +37,6 @@ URL-REGEX,^https?:\/\/stats\.tubemogul\.com\/stats\/,REJECT
 URL-REGEX,^https?:\/\/youtubei\.googleapis\.com\/.+ad_break,REJECT
 URL-REGEX,^https?:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/log_event,REJECT
 URL-REGEX,^https?:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/att\/get,REJECT
-
-[Script]
-# 降版 client 強制 opt-out SABR：讓 YouTube server 以為這是舊 iOS client，
-# 回吐有 &oad 標記的舊串流協定，配合上方 URL-REGEX 才擋得到廣告
-youtube-player-sabr-optout = type=http-request,pattern=^https:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/player\?,requires-body=1,max-size=-1,script-path=https://raw.githubusercontent.com/a91453/Surge-Modules/refs/heads/main/youtube_player.js
 
 [MITM]
 hostname = %APPEND% *.googlevideo.com, *.youtube.com, youtubei.googleapis.com
