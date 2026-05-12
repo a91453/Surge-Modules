@@ -1,35 +1,42 @@
 #!name=YouTube Enhance (Lite)
-#!desc=YouTube 廣告攔截精簡版。攔前/中插廣告、廣告追蹤 ping、廣告伺服器；不依賴 protobuf 解析腳本，故不會因 YouTube 改 schema 而失效。不含 Shorts/上傳鈕隱藏、字幕翻譯（這些需要 protobuf 解析）。
+#!desc=YouTube 廣告攔截。整合 URL-REGEX + URL Rewrite + Map Local，能擋多數前/中插廣告與追蹤上報；不依賴 protobuf 解析。注意：Shorts 內插廣告、首頁 feed 贊助 post、player overlay 廣告需要 protobuf 解析才能擋，本模組無法處理。
 #!system=ios
 
 [Rule]
 # 強制 googlevideo / youtubei 走 TCP（QUIC/UDP 會繞過 MITM 與 URL 攔截）
 AND,((DOMAIN-SUFFIX,googlevideo.com), (PROTOCOL,UDP)),REJECT
 AND,((DOMAIN,youtubei.googleapis.com), (PROTOCOL,UDP)),REJECT
-# 廣告伺服器（影響 YouTube 與其他 Google 廣告投放）
+# 廣告伺服器與追蹤
 DOMAIN,googleads.g.doubleclick.net,REJECT
 DOMAIN-SUFFIX,googlesyndication.com,REJECT
 DOMAIN-SUFFIX,googleadservices.com,REJECT
+DOMAIN-SUFFIX,2mdn.net,REJECT
+DOMAIN-SUFFIX,tubemogul.com,REJECT
+# Ad 影片本體：用 REJECT-TINYGIF 回傳 1x1 GIF，YouTube 客戶端對「廣告片源失敗」比空 200 更會跳過
+URL-REGEX,^https?:\/\/[\w-]+\.googlevideo\.com\/.+&oad,REJECT-TINYGIF
+URL-REGEX,^https?:\/\/[\w-]+\.googlevideo\.com\/.+&ctier=L,REJECT-TINYGIF
+# 廣告 ping / 統計
+URL-REGEX,^https?:\/\/[\w-]+\.googlevideo\.com\/ptracking\?pltype=adhost,REJECT
+URL-REGEX,^https?:\/\/s\.youtube\.com\/api\/stats\/qoe\?.*adformat,REJECT
+URL-REGEX,^https?:\/\/youtubei\.googleapis\.com\/.+ad_break,REJECT
+URL-REGEX,^https?:\/\/youtubei\.googleapis\.com\/youtubei\/.+(ad|log_event),REJECT
 
 [URL Rewrite]
-# YouTube 廣告與追蹤上報
+# 一般 ad endpoint reject（精準到 path，避免 URL-REGEX 過廣）
 ^https?:\/\/(www|m)\.youtube\.com\/api\/stats\/ads - reject
 ^https?:\/\/(www|m)\.youtube\.com\/api\/stats\/qoe - reject
 ^https?:\/\/(www|m)\.youtube\.com\/api\/stats\/atr - reject
 ^https?:\/\/(www|m)\.youtube\.com\/pagead - reject
 ^https?:\/\/(www|m)\.youtube\.com\/ptracking - reject
 ^https?:\/\/(www|m)\.youtube\.com\/get_midroll_info - reject
-^https?:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/log_event - reject
+^https?:\/\/(www|m)\.youtube\.com\/_get_ads - reject
 ^https?:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/att\/get - reject
 ^https?:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/foreground_heartbeat - reject
-^https?:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/player\/ad_break - reject
 ^https?:\/\/play\.google\.com\/log - reject
 
 [Map Local]
-# 前/中插廣告：&oad 是 ad video 來源標記，回傳空 200 → YouTube 客戶端視為廣告失敗並略過
+# 備援：&oad initplayback / videoplayback 回傳空 200（與上方 REJECT-TINYGIF 雙保險）
 ^https?:\/\/[\w-]+\.googlevideo\.com\/initplayback.+&oad data-type=text data="" status-code=200
-^https?:\/\/[\w-]+\.googlevideo\.com\/videoplayback.+&oad data-type=text data="" status-code=200
-^https?:\/\/[\w-]+\.googlevideo\.com\/(initplayback|videoplayback).+&ctier=L data-type=text data="" status-code=200
 
 [MITM]
-hostname = %APPEND% *.googlevideo.com, www.youtube.com, m.youtube.com, youtubei.googleapis.com
+hostname = %APPEND% *.googlevideo.com, *.youtube.com, youtubei.googleapis.com
