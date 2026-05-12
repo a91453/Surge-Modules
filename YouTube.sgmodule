@@ -15,14 +15,21 @@ DOMAIN-SUFFIX,googleadservices.com,REJECT
 # YouTube 廣告與追蹤上報
 ^https?:\/\/(www|m)\.youtube\.com\/api\/stats\/ads - reject
 ^https?:\/\/(www|m)\.youtube\.com\/api\/stats\/qoe - reject
+^https?:\/\/(www|m)\.youtube\.com\/api\/stats\/atr - reject
 ^https?:\/\/(www|m)\.youtube\.com\/pagead - reject
 ^https?:\/\/(www|m)\.youtube\.com\/ptracking - reject
 ^https?:\/\/(www|m)\.youtube\.com\/get_midroll_info - reject
 ^https?:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/log_event - reject
+^https?:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/att\/get - reject
+^https?:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/foreground_heartbeat - reject
+^https?:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/player\/ad_break - reject
+^https?:\/\/play\.google\.com\/log - reject
 
 [Map Local]
 # 前/中插廣告：&oad 是 ad video 來源標記，回傳空 200 → YouTube 客戶端視為廣告失敗並略過
 ^https?:\/\/[\w-]+\.googlevideo\.com\/initplayback.+&oad data-type=text data="" status-code=200
+^https?:\/\/[\w-]+\.googlevideo\.com\/videoplayback.+&oad data-type=text data="" status-code=200
+^https?:\/\/[\w-]+\.googlevideo\.com\/(initplayback|videoplayback).+&ctier=L data-type=text data="" status-code=200
 
 [MITM]
 hostname = %APPEND% *.googlevideo.com, www.youtube.com, m.youtube.com, youtubei.googleapis.com
