@@ -1,0 +1,28 @@
+#!name=YouTube Enhance (Lite)
+#!desc=YouTube 廣告攔截精簡版。攔前/中插廣告、廣告追蹤 ping、廣告伺服器；不依賴 protobuf 解析腳本，故不會因 YouTube 改 schema 而失效。不含 Shorts/上傳鈕隱藏、字幕翻譯（這些需要 protobuf 解析）。
+#!system=ios
+
+[Rule]
+# 強制 googlevideo / youtubei 走 TCP（QUIC/UDP 會繞過 MITM 與 URL 攔截）
+AND,((DOMAIN-SUFFIX,googlevideo.com), (PROTOCOL,UDP)),REJECT
+AND,((DOMAIN,youtubei.googleapis.com), (PROTOCOL,UDP)),REJECT
+# 廣告伺服器（影響 YouTube 與其他 Google 廣告投放）
+DOMAIN,googleads.g.doubleclick.net,REJECT
+DOMAIN-SUFFIX,googlesyndication.com,REJECT
+DOMAIN-SUFFIX,googleadservices.com,REJECT
+
+[URL Rewrite]
+# YouTube 廣告與追蹤上報
+^https?:\/\/(www|m)\.youtube\.com\/api\/stats\/ads - reject
+^https?:\/\/(www|m)\.youtube\.com\/api\/stats\/qoe - reject
+^https?:\/\/(www|m)\.youtube\.com\/pagead - reject
+^https?:\/\/(www|m)\.youtube\.com\/ptracking - reject
+^https?:\/\/(www|m)\.youtube\.com\/get_midroll_info - reject
+^https?:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/log_event - reject
+
+[Map Local]
+# 前/中插廣告：&oad 是 ad video 來源標記，回傳空 200 → YouTube 客戶端視為廣告失敗並略過
+^https?:\/\/[\w-]+\.googlevideo\.com\/initplayback.+&oad data-type=text data="" status-code=200
+
+[MITM]
+hostname = %APPEND% *.googlevideo.com, www.youtube.com, m.youtube.com, youtubei.googleapis.com
