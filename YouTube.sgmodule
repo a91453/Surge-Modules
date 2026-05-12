@@ -1,5 +1,5 @@
-#!name=YouTube Enhance (Lite)
-#!desc=YouTube 廣告攔截。整合 Choler / jimmyorz / Gx3dong 等社群維護模組的 URL-based 技巧，零外部腳本依賴。能擋前/中插廣告與多數追蹤上報。注意：Shorts 內插廣告、首頁 feed 贊助 post、player overlay 廣告需 protobuf 解析才能擋，本模組不處理（社群目前無維護中的 protobuf 版本）。
+#!name=YouTube Enhance (Lite + SABR Opt-Out)
+#!desc=YouTube 廣告攔截：(1) URL-based 規則擋追蹤、舊版廣告片源；(2) http-request 腳本降版 iOS client 強制 opt-out SABR，讓伺服器吐舊版串流協定（有 &oad 可擋）。實驗性質，若播放異常請移除模組。
 #!system=ios
 
 [Rule]
@@ -36,6 +36,11 @@ URL-REGEX,^https?:\/\/stats\.tubemogul\.com\/stats\/,REJECT
 URL-REGEX,^https?:\/\/youtubei\.googleapis\.com\/.+ad_break,REJECT
 URL-REGEX,^https?:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/log_event,REJECT
 URL-REGEX,^https?:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/att\/get,REJECT
+
+[Script]
+# 降版 client 強制 opt-out SABR：讓 YouTube server 以為這是舊 iOS client，
+# 回吐有 &oad 標記的舊串流協定，配合上方 URL-REGEX 才擋得到廣告
+youtube-player-sabr-optout = type=http-request,pattern=^https:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/player\?,requires-body=1,max-size=-1,script-path=https://raw.githubusercontent.com/a91453/Surge-Modules/refs/heads/main/youtube_player.js
 
 [MITM]
 hostname = %APPEND% *.googlevideo.com, *.youtube.com, youtubei.googleapis.com
