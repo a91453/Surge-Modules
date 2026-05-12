@@ -1,0 +1,8 @@
+#!name=Unlock Grindr
+#!desc=解鎖 Grindr XTRA / Unlimited 高級會員權限
+
+[MITM]
+hostname = %APPEND% grindr.mobi
+
+[Script]
+Grindr = type=http-response,pattern=^https:\/\/grindr\.mobi\/v\d\/(me\/)?sessions,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/a91453/Surge-Modules/main/scripts/unlock/grindr.js
