@@ -1,4 +1,4 @@
-#!name=Unlock Mokey
+#!name=Unlock Monkey
 #!desc=All apps Monkey
 [MITM]
 hostname = %APPEND% app.monkeyuni.net
