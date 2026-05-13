@@ -1,0 +1,8 @@
+#!name=Unlock StoreKit 2 (Experimental)
+#!desc=攔截 StoreKit 2 (api.storekit.itunes.apple.com) JWS 端點並修改 payload。注意:Apple 用 ECDSA-P256 簽章,修改後簽章失效;僅對「不驗證 JWS 簽章」的 App 有效。使用系統 StoreKit Transaction API 的 App 由 storekitd 驗章,MITM 無法繞過。Subscription 端點外殼的 status 欄位未簽章,可可靠修改。
+
+[MITM]
+hostname = %APPEND% api.storekit.itunes.apple.com, api.storekit-sandbox.itunes.apple.com
+
+[Script]
+StoreKit2 = type=http-response,pattern=^https:\/\/api\.storekit(-sandbox)?\.itunes\.apple\.com\/inApps\/v\d+\/(transactions|subscriptions|history)\/,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/a91453/Surge-Modules/main/scripts/tools/storekit2.js,script-update-interval=-1

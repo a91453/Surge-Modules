@@ -1,0 +1,8 @@
+#!name=Unlock RevenueCat v2 API
+#!desc=攔截 api.revenuecat.com/v2/* (REST API v2)。修改 expires_at / current_period_ends_at / status / gives_access / auto_renewal_status 等欄位,模擬訂閱 active 狀態。注意:RevenueCat 行動 SDK 走 /v1/,本模組僅對直接呼叫 v2 端點的 App / 後台 / Dashboard 有效。Pattern 鎖定 /v2/,可與既有 Revenuecat.sgmodule (v1) 共存。
+
+[MITM]
+hostname = %APPEND% api.revenuecat.com
+
+[Script]
+RevenuecatV2 = type=http-response,pattern=^https:\/\/api\.revenuecat\.com\/v2\/,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/a91453/Surge-Modules/main/scripts/tools/revenuecat-v2.js,script-update-interval=-1
