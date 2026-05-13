@@ -1,4 +1,4 @@
 #!name=MitM All Hostnames
 #!desc=Http Capture MitM All Hostnames
 [MITM]
-hostname = -*.apple.com, -*.icloud.com, -*.mzstatic.com, -*.crashlytics.com, -*.facebook.com, -*.instagram.com, *
+hostname = -*.apple.com, -*.icloud.com, -*.mzstatic.com, -*.crashlytics.com, -*.facebook.com, -*.instagram.com, -*.threads.net, -*.whatsapp.net, -*.signal.org, -*.spotify.com, -*.tiktokv.com, -*.snssdk.com, -*.line-apps.com, -*.line.me, -*.googlevideo.com, *

@@ -65,6 +65,7 @@ function patchJws(jws) {
         parts[1] = b64UrlEncode(JSON.stringify(payload));
         return parts.join(".");
     } catch (e) {
+        console.log("[storekit2] JWS patch failed, returning original:", e.message);
         return jws;
     }
 }
@@ -102,6 +103,8 @@ try {
     }
 
     result = JSON.stringify(obj);
-} catch (e) {}
+} catch (e) {
+    console.log("[storekit2] JSON parse failed, passing body through:", e.message);
+}
 
 $done({ body: result });
