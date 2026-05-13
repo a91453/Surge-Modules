@@ -233,4 +233,4 @@ RULE-SET,https://raw.githubusercontent.com/a91453/Surge-Modules/main/rules/Netfl
 
 ## 致謝
 
-模組與腳本內容彙整自多位社群作者的貢獻,包含但不限於:`boybh/Surge-LK`、`bigdargon/hostsVN`、`NextDNS`、`Cloudflare WARP`、以及各模組原作者(請參考各 `.sgmodule` / `.js` 檔案頭部說明)。
+模組與腳本內容彙整自多位社群作者的貢獻,包含但不限於:`Surge-LK`、`bigdargon/hostsVN`、`NextDNS`、`Cloudflare WARP`、以及各模組原作者(請參考各 `.sgmodule` / `.js` 檔案頭部說明)。
