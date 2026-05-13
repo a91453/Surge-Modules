@@ -1,5 +1,5 @@
-#!name=Unlock Documents-PdfExpert-Scaner Pro
-#!desc=Documents-PdfExpert-Scaner Pro
+#!name=Unlock Documents-PdfExpert-Scanner Pro
+#!desc=Documents-PdfExpert-Scanner Pro
 [MITM]
 hostname = %APPEND% license.pdfexpert.com
 [Script]
