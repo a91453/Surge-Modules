@@ -48,6 +48,8 @@ try {
     const obj = JSON.parse(body);
     patch(obj);
     result = JSON.stringify(obj);
-} catch (e) {}
+} catch (e) {
+    console.log("[revenuecat] JSON parse failed, passing body through:", e.message);
+}
 
 $done({ body: result });
