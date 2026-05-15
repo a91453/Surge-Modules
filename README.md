@@ -8,8 +8,8 @@
   <img alt="Forks" src="https://img.shields.io/github/forks/a91453/Surge-Modules?style=flat-square&color=brightgreen" />
   <img alt="Last Commit" src="https://img.shields.io/github/last-commit/a91453/Surge-Modules?style=flat-square&color=blue" />
   <img alt="Repo Size" src="https://img.shields.io/github/repo-size/a91453/Surge-Modules?style=flat-square" />
-  <img alt="Modules" src="https://img.shields.io/badge/Modules-77-9cf?style=flat-square" />
-  <img alt="Rules" src="https://img.shields.io/badge/Rules-15-purple?style=flat-square" />
+  <img alt="Modules" src="https://img.shields.io/badge/Modules-72-9cf?style=flat-square" />
+  <img alt="Rules" src="https://img.shields.io/badge/Rules-14-purple?style=flat-square" />
 </p>
 
 ---
@@ -18,9 +18,9 @@
 
 | 目錄 | 內容 | 數量 |
 | :--- | :--- | :---: |
-| [`modules/`](./modules) | Surge `.sgmodule` 模組,依功能分為六大類 | 77 |
+| [`modules/`](./modules) | Surge `.sgmodule` 模組,依功能分為六大類 | 72 |
 | [`scripts/`](./scripts) | 模組所依賴的 JavaScript 腳本,目錄與 `modules/` 一一對應 | — |
-| [`rules/`](./rules) | 規則集 `.list` 檔(Apple / Netflix / Youtube …) | 15 |
+| [`rules/`](./rules) | 規則集 `.list` 檔(Apple / Netflix / Youtube …) | 14 |
 | [`mocks/`](./mocks) | Mock 回應(reject-200 / reject-img / reject-video …) | — |
 | [`maplocal/`](./maplocal) | Map Local 替換用資源(JSON / PAC) | — |
 | [`dconf/`](./dconf) | Surge 配置片段(GROUP / MITM / PROXY / RULE / SSID / WARP) | 7 |
@@ -35,7 +35,6 @@
 
 | 模組 | 說明 |
 | :--- | :--- |
-| [`Adblock.sgmodule`](./modules/adblock/Adblock.sgmodule) | 套用 hostsVN 規則集進行越南本地廣告攔截 |
 | [`Adguard.sgmodule`](./modules/adblock/Adguard.sgmodule) | AdGuard 行動規則 |
 | [`Adsinapp.sgmodule`](./modules/adblock/Adsinapp.sgmodule) | App 內廣告過濾 |
 | [`AntiAdbDetect.sgmodule`](./modules/adblock/AntiAdbDetect.sgmodule) | 對抗網站「偵測廣告攔截」彈窗 |
@@ -46,7 +45,6 @@
 
 | 模組 | 說明 |
 | :--- | :--- |
-| [`ASN.sgmodule`](./modules/dns/ASN.sgmodule) | 啟用 ASN 解析輔助分流 |
 | [`AutoNextDNS.sgmodule`](./modules/dns/AutoNextDNS.sgmodule) | 自動同步 NextDNS LinkedIP |
 | [`IPv6.sgmodule`](./modules/dns/IPv6.sgmodule) | IPv6 相關設定 |
 | [`NextDNS.sgmodule`](./modules/dns/NextDNS.sgmodule) | NextDNS DoH(Ultra-Low 延遲) |
@@ -66,9 +64,7 @@
 | :--- | :--- |
 | [`Boom.sgmodule`](./modules/streaming/Boom.sgmodule) | Boom Music 處理 |
 | [`Fix-Youtube-login.sgmodule`](./modules/streaming/Fix-Youtube-login.sgmodule) | 修正 YouTube 登入問題 |
-| [`Nhaccuatui.sgmodule`](./modules/streaming/Nhaccuatui.sgmodule) | NhacCuaTui(越南音樂)解鎖 |
 | [`Spotify.sgmodule`](./modules/streaming/Spotify.sgmodule) | Spotify Premium 部分解鎖(iOS 15) |
-| [`VeboTV.sgmodule`](./modules/streaming/VeboTV.sgmodule) | VeboTV 解鎖 |
 | [`Youtube.sgmodule`](./modules/streaming/Youtube.sgmodule) | YouTube 增強(去廣告 / 後台播放等) |
 
 ### 實用工具 · Tools
@@ -86,7 +82,7 @@
 | [`Q-Search.sgmodule`](./modules/tools/Q-Search.sgmodule) | 自訂搜尋引擎導向 |
 | [`Revenuecat.sgmodule`](./modules/tools/Revenuecat.sgmodule) | 攔截 RevenueCat v1 訂閱檢查 |
 | [`Revenuecat-v2.sgmodule`](./modules/tools/Revenuecat-v2.sgmodule) | 攔截 RevenueCat v2 REST API(可與 v1 並存) |
-| [`Shopee.sgmodule`](./modules/tools/Shopee.sgmodule) | Shopee 自動簽到 / Cookie 抓取 |
+| [`Shopee.sgmodule`](./modules/tools/Shopee.sgmodule) | Shopee 台灣站自動簽到 / Cookie 抓取 |
 | [`StoreKit2.sgmodule`](./modules/tools/StoreKit2.sgmodule) | StoreKit 2 解鎖(實驗性) |
 | [`Trace.sgmodule`](./modules/tools/Trace.sgmodule) | 抓包輔助與請求追蹤 |
 | [`UserScript.sgmodule`](./modules/tools/UserScript.sgmodule) | Greasy Fork 風格 UserScript 注入 |
@@ -94,7 +90,7 @@
 
 ### App 解鎖 · Unlock
 
-> 共 41 個 App 解鎖模組。展開查看完整清單。
+> 共 40 個 App 解鎖模組。展開查看完整清單。
 
 <details>
 <summary><b>展開所有 Unlock 模組</b></summary>
@@ -126,7 +122,6 @@
 | [`Lightroom.sgmodule`](./modules/unlock/Lightroom.sgmodule) | Lightroom |
 | [`Mate.sgmodule`](./modules/unlock/Mate.sgmodule) | Mate Translate |
 | [`Mix.sgmodule`](./modules/unlock/Mix.sgmodule) | Mix |
-| [`Monkey.sgmodule`](./modules/unlock/Monkey.sgmodule) | Monkey |
 | [`MuscleBooster.sgmodule`](./modules/unlock/MuscleBooster.sgmodule) | Muscle Booster |
 | [`Nicegram.sgmodule`](./modules/unlock/Nicegram.sgmodule) | Nicegram |
 | [`Notability.sgmodule`](./modules/unlock/Notability.sgmodule) | Notability |
@@ -155,7 +150,6 @@
 | [`AppleTV.list`](./rules/AppleTV.list) | 3 | Apple TV+ 串流 |
 | [`Antirevoke.list`](./rules/Antirevoke.list) | 9 | 防止企業簽名被吊銷 |
 | [`Black.list`](./rules/Black.list) | 2 | 黑名單(直接 REJECT) |
-| [`White.list`](./rules/White.list) | 1 | 白名單(強制 DIRECT) |
 | [`Facebook.list`](./rules/Facebook.list) | 1 | Facebook |
 | [`HBO.list`](./rules/HBO.list) | 8 | HBO Max |
 | [`Kakaotalk.list`](./rules/Kakaotalk.list) | 3 | KakaoTalk |
@@ -166,6 +160,8 @@
 | [`TestFlight.list`](./rules/TestFlight.list) | 2 | TestFlight |
 | [`Youtube.list`](./rules/Youtube.list) | 5 | YouTube |
 | [`YouTubeMusic.list`](./rules/YouTubeMusic.list) | 2 | YouTube Music |
+
+> 註:`Black.list` 為通用黑名單規則,目前僅保留 lightricks 關鍵字攔截。
 
 ---
 
@@ -233,4 +229,4 @@ RULE-SET,https://raw.githubusercontent.com/a91453/Surge-Modules/main/rules/Netfl
 
 ## 致謝
 
-模組與腳本內容彙整自多位社群作者的貢獻,包含但不限於:`Surge-LK`、`bigdargon/hostsVN`、`NextDNS`、`Cloudflare WARP`、以及各模組原作者(請參考各 `.sgmodule` / `.js` 檔案頭部說明)。
+模組與腳本內容彙整自多位社群作者的貢獻,包含但不限於:`Surge-LK`、`NextDNS`、`Cloudflare WARP`、以及各模組原作者(請參考各 `.sgmodule` / `.js` 檔案頭部說明)。

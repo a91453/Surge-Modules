@@ -8,7 +8,7 @@ if (cookie) {
 $.write($request.headers['Cookie'], "#shopeecookie");
 $.notify(`🟢Shopee Save`, `#shopeecookie: ${cookie}`,``);
   } else {
-    $.notify(`🔴Shopee Login web again `, ``, ``,{"open-url": "https://shopee.vn/buyer/login?from=%2F&next=%2F"})
+    $.notify(`🔴Shopee Login web again `, ``, ``,{"open-url": "https://shopee.tw/buyer/login?from=%2F&next=%2F"})
   }
  $.done();
 
