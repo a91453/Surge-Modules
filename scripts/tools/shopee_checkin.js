@@ -5,7 +5,7 @@
 const $ = API("SHOPEE++", true);
 const cookie = $.read("#shopeecookie");
  const request = {
-    url: 'https://shopee.vn/mkt/coins/api/v2/checkin',
+    url: 'https://shopee.tw/mkt/coins/api/v2/checkin',
     headers: {
       Cookie: `${cookie}`,
     }
@@ -20,7 +20,7 @@ $.error(resp.body);
 $.notify(`🔴Shoppe Increase false: Try again tomorow`,``,``);
 }
 }else{
-$.notify(`🔴Shoppe error Internet; Login web again`,``,``,{"open-url": "https://shopee.vn/buyer/login?from=%2F&next=%2F"});
+$.notify(`🔴Shoppe error Internet; Login web again`,``,``,{"open-url": "https://shopee.tw/buyer/login?from=%2F&next=%2F"});
 }
 $.done();
 })
