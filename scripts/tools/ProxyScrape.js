@@ -5,7 +5,7 @@ http proxy parse surge
 const $ = API("PROXY HTTP PARSE", true);
 const pattern = /((?:\d{1,3}\.){3}\d{1,3}):(\d+)(.+)/g;
 
-var url = "http://spys.me/proxy.txt"; //$request.url; //change api 
+const url = "http://spys.me/proxy.txt"; //$request.url; //change api
 $.http.get(url).then(resp => {
 if(resp.statusCode == 200){
 $.log(`Fetch Success`);

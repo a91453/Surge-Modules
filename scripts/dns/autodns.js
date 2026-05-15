@@ -10,7 +10,7 @@ getModuleStatus(sgmodule).then(main);
 
 function main(enable) {
   console.log(getModuleStatus(sgmodule));
-  let home = $network.wifi.ssid == "Tầng 3" || $network.wifi.ssid == "VNPT";
+  const home = $network.wifi.ssid == "Tầng 3" || $network.wifi.ssid == "VNPT";
   if (home && enable) {
     //At home, it will enable nextDNS => close
     $notification.post("Close NextDNS ", "", "");
@@ -29,14 +29,14 @@ function main(enable) {
 function getModuleStatus(sgmodule) {
   return new Promise(resolve => {
     $httpAPI("GET", path, null, resp => {
-      let enabled = resp.enabled;
+      const enabled = resp.enabled;
       resolve(enabled.includes(sgmodule));
     });
   });
 }
 
 function enableModule(enable) {
-  var body = {};
+  const body = {};
   body[sgmodule] = enable;
   $httpAPI("POST", path, body, () => $done());
 }

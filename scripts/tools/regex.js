@@ -13,23 +13,28 @@ const api = {
 };
 
 $.http.get(api).then(resp => {
-  let profile = JSON.parse(resp.body);
-  let domain = profile.profile
-    .match(/DOMAIN,(.+),UNLOCK.APPS/)[0]
-    .slice(7, -11);
-$.write(domain, "#domain");
-  $.done({
-    response: {
-      status: 200,
-      headers: {
-        "Content-Type": "text/plain;charset=UTF-8"
-      },
-      body: genunlock(domain)
-    }
-  });
+  try {
+    const profile = JSON.parse(resp.body);
+    const domain = profile.profile
+      .match(/DOMAIN,(.+),UNLOCK.APPS/)[0]
+      .slice(7, -11);
+    $.write(domain, "#domain");
+    $.done({
+      response: {
+        status: 200,
+        headers: {
+          "Content-Type": "text/plain;charset=UTF-8"
+        },
+        body: genunlock(domain)
+      }
+    });
+  } catch (e) {
+    $.error(e);
+    $.done();
+  }
 });
 function genunlock(domain) {
-  var regex = domain2regex(domain);
+  const regex = domain2regex(domain);
   return `#!name=Unlock.apps
 #!desc=Unlock.apps automatic
 

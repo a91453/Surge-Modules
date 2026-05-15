@@ -15,7 +15,7 @@ const features = [
   { id: "premium_support", rank: 11, status: "Included" },
   { id: "gold_caller_id", rank: 13, status: "Included" }
 ];
-var obj;
+let obj;
 switch ($request.url) {
   case findUrl(/subscriptions\/status/):
       obj = {
