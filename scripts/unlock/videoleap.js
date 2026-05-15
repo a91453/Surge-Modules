@@ -1,4 +1,4 @@
-var obj = '<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+const obj = '<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <plist version="1.0">
 <dict>
 <key>pings</key>

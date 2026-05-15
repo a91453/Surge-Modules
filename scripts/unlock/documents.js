@@ -1,5 +1,5 @@
 
-var obj= {
+const obj = {
   "originalTransactionId" : "20000625420102",
   "subscriptionState" : "trial",
   "isInGracePeriod" : false,

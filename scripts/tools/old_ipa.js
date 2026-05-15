@@ -14,7 +14,7 @@ let obj = $request.body;
 
 
 if (url.indexOf(api) != -1) {
-var appid = url.match(/\d{6,}$/);
+const appid = url.match(/\d{6,}$/);
 if(appid != null){
   $.write(appid[0], "#oldappid");
   $.notify(
@@ -25,7 +25,7 @@ if(appid != null){
 }
 }
 if (url.indexOf(buy) != -1) {
-  var appid = $.read("#oldappid");
+  const appid = $.read("#oldappid");
   var body = obj.replace(/\d{6,}/, appid);
   $.notify(`🟢OLD_IPA`, `->Rewrited #oldappid: ${appid}`, ``);
 }
