@@ -137,7 +137,7 @@ function notify(notifys) {
   $.done;
 }
 function flag(x) {
-  var flags = new Map([
+  const flags = new Map([
     ["AC", "🇦🇨"],
     ["AF", "🇦🇫"],
     ["AI", "🇦🇮"],
