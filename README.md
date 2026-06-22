@@ -8,7 +8,7 @@
   <img alt="Forks" src="https://img.shields.io/github/forks/a91453/Surge-Modules?style=flat-square&color=brightgreen" />
   <img alt="Last Commit" src="https://img.shields.io/github/last-commit/a91453/Surge-Modules?style=flat-square&color=blue" />
   <img alt="Repo Size" src="https://img.shields.io/github/repo-size/a91453/Surge-Modules?style=flat-square" />
-  <img alt="Modules" src="https://img.shields.io/badge/Modules-72-9cf?style=flat-square" />
+  <img alt="Modules" src="https://img.shields.io/badge/Modules-73-9cf?style=flat-square" />
   <img alt="Rules" src="https://img.shields.io/badge/Rules-14-purple?style=flat-square" />
 </p>
 
@@ -18,7 +18,7 @@
 
 | 目錄 | 內容 | 數量 |
 | :--- | :--- | :---: |
-| [`modules/`](./modules) | Surge `.sgmodule` 模組,依功能分為六大類 | 72 |
+| [`modules/`](./modules) | Surge `.sgmodule` 模組,依功能分為六大類 | 73 |
 | [`scripts/`](./scripts) | 模組所依賴的 JavaScript 腳本,目錄與 `modules/` 一一對應 | — |
 | [`rules/`](./rules) | 規則集 `.list` 檔(Apple / Netflix / Youtube …) | 14 |
 | [`mocks/`](./mocks) | Mock 回應(reject-200 / reject-img / reject-video …) | — |
@@ -84,6 +84,7 @@
 | [`Revenuecat-v2.sgmodule`](./modules/tools/Revenuecat-v2.sgmodule) | 攔截 RevenueCat v2 REST API(可與 v1 並存) |
 | [`Shopee.sgmodule`](./modules/tools/Shopee.sgmodule) | Shopee 台灣站自動簽到 / Cookie 抓取 |
 | [`StoreKit2.sgmodule`](./modules/tools/StoreKit2.sgmodule) | StoreKit 2 解鎖(實驗性) |
+| [`TradingView.sgmodule`](./modules/tools/TradingView.sgmodule) | 備份 / 還原 TradingView 自選股清單 |
 | [`Trace.sgmodule`](./modules/tools/Trace.sgmodule) | 抓包輔助與請求追蹤 |
 | [`UserScript.sgmodule`](./modules/tools/UserScript.sgmodule) | Greasy Fork 風格 UserScript 注入 |
 | [`iPA Install.sgmodule`](./modules/tools/iPA%20Install.sgmodule) | 從 Safari 直接安裝 iPA |
