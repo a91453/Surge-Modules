@@ -1,0 +1,9 @@
+#!name=TradingView Watchlist
+#!desc=備份 / 還原 TradingView (cn.tradingview.com) 自選股清單,登入後自選股會寫入持久化儲存並自動回填
+
+[Script]
+TradingViewList = type=http-response,pattern=^https?:\/\/cn\.tradingview\.com\/api\/v1\/symbols_list\/all\/,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/a91453/Surge-Modules/main/scripts/tools/TradingViewList.js
+TradingViewAdd = type=http-request,pattern=^https?:\/\/cn\.tradingview\.com\/api\/v1\/symbols_list\/custom\/\d+\/append\/,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/a91453/Surge-Modules/main/scripts/tools/TradingViewAdd.js
+
+[MITM]
+hostname = %APPEND% cn.tradingview.com
